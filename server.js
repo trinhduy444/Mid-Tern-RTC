@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const { v4: uuidv4 } = require("uuid");
-const Query = require('querystring')
-const Url = require('url')
+const port = 3030;
 
 
 
@@ -56,5 +55,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.PORT || 3030);
-console.log("Server is running on port http://localhost:3030");
+server.listen(port, () => {
+  console.log(`Server is running on port http://localhost:${port}`);
+});

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Trang Chủ</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+    <div class="container my-3">
+        <h4 class="my-5 text-info text-center text-uppercase">Chọn chức năng cần dùng</h4>
+        <h6 class="my-5 text-black-50 text-center">Dev: Trinh Truong Duy</h6>
+        <div class="d-flex justify-content-center">
+            <button id="createBut" data-toggle="modal" data-target=".createRoomModal">
+                Tạo phòng
+            </button>
+
+            <button type="button" id="joinBut" data-toggle="modal" data-target=".joinRoomModal" style="margin-left: 20px;">
+                Vào phòng
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Join Room -->
+    <div class="modal fade joinRoomModal"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modalJoin" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <form action="/" method="post" id = "joinForm">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="color : #17b340">Vào phòng</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="nameJoin">Nhập tên bạn</label>
+                            <input id="nameJoin" name="nameJoin" type="text" class="form-control"
+                                placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="idRoom">Nhập ID Phòng</label>
+                            <input id="idRoom" name="idRoom" type="text" class="form-control"
+                                placeholder="Enter ID the Room">
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success" id="joinRoomBut" style="margin-bottom: 10px;">Vào
+                            phòng</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Room -->
+    <div class="modal fade createRoomModal" tabindex="-1" role="dialog" aria-labelledby="modalCreate"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form action="/<%= roomId %>" method="post" id = "formCreate">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="color: #f23d97;">Tạo phòng</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="nameCreate">Nhập tên bạn</label>
+                            <input id="nameCreate" name="nameCreate" type="text" class="form-control"
+                                placeholder="Your Name">
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success " id="createRoomBut"
+                            style="margin-bottom: 10px;">Tạo phòng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    const formCreate = document.getElementById('formCreate');
+    formCreate.addEventListener('submit', function (event) {
+        const name = document.getElementById('nameCreate');
+        console.log(name.value.trim());
+        if (name.value.trim() === '') {
+            event.preventDefault();
+            alert('Vui lòng nhập tên của bạn');
+        }
+    });
+    const joinRoomBut = document.getElementById('joinRoomBut');
+    joinRoomBut.addEventListener('click', function (event) {
+        const name = document.getElementById('nameJoin');
+        const idRoom = document.getElementById('idRoom');
+        console.log(idRoom.value.trim());
+        if (name.value.trim() === '' || idRoom.value.trim() === '') {
+            event.preventDefault();
+            alert('Vui lòng nhập đầy đủ thông tin');
+        }
+        else{
+            const joinForm = document.getElementById('joinForm');
+            joinForm.setAttribute('action', '/'+idRoom.value.trim());
+        }
+    });
+
+</script>
+
+</html>

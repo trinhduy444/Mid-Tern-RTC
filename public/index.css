@@ -1,0 +1,45 @@
+button {
+    height: 40px;
+    width: 200px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+body{
+    background-image: url(backgroundRTC.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 100%;
+}
+
+#createBut,
+#createRoomBut {
+    background-color: #f23d97;
+    box-shadow: 0 5px 0 #8C2E6E;
+    transition: .5s;
+}
+
+#joinBut,
+#joinRoomBut {
+    background-color: #17b340;
+    box-shadow: 0 5px 0 #104519;
+    transition: .5s;
+}
+
+
+button:active {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+.divChoose div {
+    background-color: #FF4136;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -7,7 +7,9 @@
   --main-light: #eeeeee;
   font-family: "Poppins", sans-serif;
 }
+
 h4{
+  display: inline-block;
   color: #fbc2eb;
 }
 * {
@@ -15,6 +17,9 @@ h4{
   padding: 0;
 }
 
+#copyBut{
+  display: inline-block;
+}
 .header {
   display: flex;
   justify-content: center;

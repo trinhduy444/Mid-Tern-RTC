@@ -55,6 +55,10 @@ io.on("connection", (socket) => {
   });
 });
 
+io.on("user-disconnected", (roomId,userId) => {
+  io.to(roomId).emit("user-disconnected", userId);
+});
+
 server.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`);
 });

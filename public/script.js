@@ -156,13 +156,23 @@ stopVideo.addEventListener("click", () => {
 const inviteButton = document.querySelector("#inviteButton");
 const roomIDh4 = document.querySelector("#roomIDh4");
 inviteButton.addEventListener("click", (e) => {
-  prompt(
-    "Sao chép ID này và gửi đến người bạn của bạn để tham gia cuộc trò chuyện",
-      roomIDh4.innerHTML
+  
+
+
+
+
+    prompt(
+    "Sao chép URL để mời bạn bè vào phòng",
+      window.location.href
     );
 });
 
-
+const copyButton = document.querySelector("#copyBut");
+copyButton.addEventListener("click", (e) => {
+  const text = roomIDh4.innerHTML;
+  navigator.clipboard.writeText(text);
+  alert('Đã sao chép ID phòng');
+});
 //Chat navigation
 socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
@@ -172,4 +182,10 @@ socket.on("createMessage", (message, userName) => {
     }</span> </b>
         <span>${message}</span>
     </div>`;
+});
+// User End Chat
+window.addEventListener("beforeunload", (e) => {
+  e.preventDefault();
+
+  socket.emit("user-disconnected", ROOM_ID,peer.id);
 });
